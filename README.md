@@ -12,15 +12,11 @@ Rest API that allows register of books, categories and authors as its relationsh
 
 ## Running the application
 
-<br>
-
 ### Dependencies
 
 `npm i`
 
 </i> will install the dependencies</i>
-
-<br>
 
 ### Starting
 
@@ -28,23 +24,17 @@ Rest API that allows register of books, categories and authors as its relationsh
 
 </i> will run at the application at http://127.0.0.1:3000/</i>
 
-<br>
-
 ### Migrations
 
 `npx knex migrate:up `
 
 <i>will generate the tables</i>
 
-<br>
-
 ### Seeding
 
 `npx knex seed:run`
 
 <i>will insert 3 authors, 3 categories and 3 books in the database</i>
-
-<br>
 
 ## API Endpoints
 
@@ -58,8 +48,6 @@ Rest API that allows register of books, categories and authors as its relationsh
 | PATCH  | /category/update/:id | Updates a category      | name / String   |
 | DELETE | /category/delete/:id | Deletes a category      | none            |
 
-<br>
-
 ### Authors
 
 | Method | Url                | What does it do?      | Required Fields |
@@ -70,8 +58,6 @@ Rest API that allows register of books, categories and authors as its relationsh
 | PATCH  | /author/update/:id | Updates an author     | name / String   |
 | DELETE | /author/delete/:id | Deletes an author     | none            |
 
-<br>
-
 ### Books
 
 | Method | Url              | What does it do?    | Required Fields                                            |
@@ -81,8 +67,6 @@ Rest API that allows register of books, categories and authors as its relationsh
 | GET    | /book/show/:id   | Shows a single book | none                                                       |
 | PATCH  | /book/update/:id | Updates a book      | name / String, category_id / integer / author_id / integer |
 | DELETE | /book/delete/:id | Deletes a book      | none                                                       |
-
-<br>
 
 ## To do list
 
