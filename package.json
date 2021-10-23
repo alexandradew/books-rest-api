@@ -1,0 +1,26 @@
+{
+  "name": "books-rest-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexandradew/books-rest-api.git"
+  },
+  "author": "Alex Andrade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexandradew/books-rest-api/issues"
+  },
+  "homepage": "https://github.com/alexandradew/books-rest-api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.95.11",
+    "nodemon": "^2.0.14",
+    "sqlite3": "^5.0.2"
+  }
+}
