@@ -29,6 +29,10 @@ module.exports = {
 
       const { name } = req.body;
 
+      if(!name){
+        return res.status(400).json({'message': 'You need to provide an author name.'});
+      }
+
       await knex('authors').insert({
         name: name,
         created_at: new Date(),
@@ -46,6 +50,11 @@ module.exports = {
     try{        
 
       const { name } = req.body;
+
+      if(!name){
+        return res.status(400).json({'message': 'You need to provide an author name.'});
+      }
+
       await knex('authors').where('id', req.params.id).update({
         name: name,
         updated_at: new Date(),
@@ -63,8 +72,15 @@ module.exports = {
   async destroy(req, res, next) {          
     try{        
 
+      let booksByThisAuthor = await knex.select('*').from('books').where('author_id', req.params.id);
+
+      if(booksByThisAuthor.length > 0){
+        return res.status(403).json({'error': 'This author cannot be deleted because it is being used by a book.'});
+      }
+
       await knex.delete('*').from('authors').where('id', req.params.id);
-      return res.status(201).json({'message': 'Deleted successfully'});
+      return res.status(200).json({'message': 'Deleted successfully'});          
+      
 
     }catch(err){
       next(err);

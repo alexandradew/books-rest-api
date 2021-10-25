@@ -29,6 +29,10 @@ module.exports = {
 
       const { name } = req.body;
 
+      if(!name){
+        return res.status(400).json({'message': 'You need to provide a category name.'});
+      }
+
       await knex('categories').insert({
         name: name,
         created_at: new Date(),
@@ -46,12 +50,17 @@ module.exports = {
     try{        
 
       const { name } = req.body;
+
+      if(!name){
+        return res.status(400).json({'message': 'You need to provide a category name.'});
+      }
+
       await knex('categories').where('id', req.params.id).update({
         name: name,
         updated_at: new Date(),
       })
 
-      return res.status(201).json({'message': 'Updated successfully'});
+      return res.status(200).json({'message': 'Updated successfully'});
 
     }catch(err){
 
@@ -62,6 +71,12 @@ module.exports = {
 
   async destroy(req, res, next) {          
     try{        
+
+      let booksWithThisCategory = await knex.select('*').from('books').where('category_id', req.params.id);
+
+      if(booksWithThisCategory.length > 0){
+        return res.status(403).json({'error': 'This category cannot be deleted because it is being used by a book.'});
+      }      
 
       await knex.delete('*').from('categories').where('id', req.params.id);
       return res.status(201).json({'message': 'Deleted successfully'});
